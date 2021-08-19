@@ -9,9 +9,11 @@
 
 #include "utils.h"
 
+// 读取初始gpu_list，获得gpu id编号
 int *read_intlist(char *gpu_list, int *ngpus, int d)
 {
     int *gpus = 0;
+    // 如果gpu_list不为空，gpu_list = "*,*,*,*,"
     if(gpu_list){
         int len = strlen(gpu_list);
         *ngpus = 1;

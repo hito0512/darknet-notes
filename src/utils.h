@@ -9,8 +9,8 @@
 
 int *read_intlist(char *s, int *n, int d);
 int *read_map(char *filename);
-void shuffle(void *arr, size_t n, size_t size);
-void sorta_shuffle(void *arr, size_t n, size_t size, size_t sections);
+void shuffle(void *arr, size_t n, size_t size);  //对数组进行洗牌操作
+void sorta_shuffle(void *arr, size_t n, size_t size, size_t sections); // 对每一个sections进行洗牌操作
 void free_ptrs(void **ptrs, int n);
 char *basecfg(char *cfgfile);
 int alphanum_to_int(char c);

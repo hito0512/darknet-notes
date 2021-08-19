@@ -8,8 +8,8 @@
 struct network;
 typedef struct network network;
 
-struct layer;
 typedef struct layer layer;
+struct layer;
 
 /** 
  * 网络结构类型（枚举类型），对应的整型值由CONVOLUTIONAL从0开始往下编号，共24中网络类型（最后一个对应的整型值为23）.

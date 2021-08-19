@@ -4,16 +4,29 @@
 #include <stdio.h>
 
 
+/**
+ * 构建reorg层
+ * reorg层在yolov2的第26层，第25层的输出26 × 26 × 512，reshape后为 13 × 13 × 2048;
+ * @param batch 一个batch中包含图片的张数
+ * @param w 输入图片的宽度
+ * @param h 输入图片的高度
+ * @param c 输入图片的通道数
+ * @param stride 步幅，在yolo v2中为2
+ * @param reverse 在yolo v2中为0
+ * @param flatten 在yolo v2中为0
+ * @param extra 在yolo v2中为0
+ * @return
+ */
 layer make_reorg_layer(int batch, int w, int h, int c, int stride, int reverse, int flatten, int extra)
 {
     layer l = {0};
-    l.type = REORG;
+    l.type = REORG; // 层类别
     l.batch = batch;
-    l.stride = stride;
+    l.stride = stride;  // 图像卷积步幅
     l.extra = extra;
-    l.h = h;
-    l.w = w;
-    l.c = c;
+    l.h = h;  // 输入图片的高度
+    l.w = w;  // 输入图片的宽度
+    l.c = c;  // 输入图片的通道数
     l.flatten = flatten;
     if(reverse){
         l.out_w = w*stride;
