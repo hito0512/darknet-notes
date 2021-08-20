@@ -29,10 +29,12 @@ float matrix_topk_accuracy(matrix truth, matrix guess, int k)
     int n = truth.cols;
     int i,j;
     int correct = 0;
+    // rows：可以看做是当前batch有多少张图片，n：共有多少个类别
     for(i = 0; i < truth.rows; ++i){
         top_k(guess.vals[i], n, k, indexes);
         for(j = 0; j < k; ++j){
             int class = indexes[j];
+            // top k 中有一个正确则算预测成功
             if(truth.vals[i][class]){
                 ++correct;
                 break;
@@ -42,7 +44,7 @@ float matrix_topk_accuracy(matrix truth, matrix guess, int k)
     free(indexes);
     return (float)correct/truth.rows;
 }
-
+// 归一化
 void scale_matrix(matrix m, float scale)
 {
     int i,j;

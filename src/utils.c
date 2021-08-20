@@ -91,7 +91,10 @@ int find_arg(int argc, char* argv[], char *arg)
     }
     return 0;
 }
-
+/*
+**  找到相关参数的值，同时将这个参数从命令中剔除，我觉得是为了提高后面的搜索速度
+**  没有找到的话则设置为默认值。最后一个变量是默认值。
+*/
 int find_int_arg(int argc, char **argv, char *arg, int def)
 {
     int i;
@@ -148,7 +151,8 @@ char *basecfg(char *cfgfile)
     char *c = cfgfile;
     char *next;
     // 定位到'/'字符，让c等于'/'之后的字符，丢掉之前的字符，
-    // 比如c='cfg/yolo.cfg'->c='yolo.cfg'
+    // 比如c='cfg/yolo.cfg'->c='yolo.cfg'、
+    //  strchr 返回在字符串c 中第一次出现字符 / 的位置
     while((next = strchr(c, '/')))
     {
         c = next+1;
@@ -227,6 +231,11 @@ float sec(clock_t clocks)
     return (float)clocks/CLOCKS_PER_SEC;
 }
 
+/*
+**  a : 当前图片的预测值
+**  n : 共有多少个类别
+**  k : top k
+*/
 void top_k(float *a, int n, int k, int *index)
 {
     int i,j;

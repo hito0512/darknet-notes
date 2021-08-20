@@ -13,6 +13,7 @@ void train_yolo(char *cfgfile, char *weightfile)
     char *train_images = "/data/voc/train.txt";
     char *backup_directory = "/home/pjreddie/backup/";
     srand(time(0));
+    // 提取cfg文件的名字 eg: yolo.cfg 中的 yolo
     char *base = basecfg(cfgfile);
     printf("%s\n", base);
     float avg_loss = -1;
